@@ -15,7 +15,7 @@ h = 1/(65);
 [xx,yy] = meshgrid(x,y);
 surf(xx,yy,znew); hold on;                % Plot Numerical solution
 xlabel('x'); ylabel('y'); zlabel('z');
-title('Bioscan obtained using GMRES with GAMG Preconditioning');
+title('Patient''s bioscan showing tumor');
 
 zz = sin(2*pi.*xx).*sin(4*pi.*yy);      % Analytical solution
 surf(xx,yy,zz);       hold on;          % Plot Analytical solution
