@@ -17,7 +17,5 @@ surf(xx,yy,znew); hold on;                % Plot Numerical solution
 xlabel('x'); ylabel('y'); zlabel('z');
 title('Patient''s bioscan showing tumor');
 
-zz = sin(2*pi.*xx).*sin(4*pi.*yy);      % Analytical solution
-surf(xx,yy,zz);       hold on;          % Plot Analytical solution
 ylim([0,0.25]);
 xlim([0,0.5]);
