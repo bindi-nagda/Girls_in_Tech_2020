@@ -8,18 +8,18 @@
 #define __FUNCT__ "main"
 int main(int argc, char **args)
 {
-	Vec				 u, b ;			                       // Numerical solution, RHS
-	Mat				 A;		                               // Coefficient Matrix
-	KSP				 ksp;                                  // Linear solver context 
-	PC				 pc;                                   // Preconditioner context 
+	Vec				 u, b ;			       // Numerical solution, RHS
+	Mat				 A;		               // Coefficient Matrix
+	KSP				 ksp;                          // Linear solver context 
+	PC				 pc;                           // Preconditioner context 
 	PetscReal		 norm, normb;                          // To get relative residue
 	PetscErrorCode	 ierr;
 	PetscInt		 i, j, nloc;  
-	PetscInt		 N = 64, its, n;		                // Default size of A
+	PetscInt		 N = 64, its, n;		     // Default size of A (aka the Dummy data-set)
 	PetscScalar      pi = 4 * atan(1.0);
-	//PetscViewer	 viewer, lab;		                    // To print soln vector to text file
+	//PetscViewer	 viewer, lab;		                     // To print soln vector to text file
 	DMBoundaryType   bx = DM_BOUNDARY_NONE, by = DM_BOUNDARY_NONE;
-	DMDAStencilType  stype = DMDA_STENCIL_STAR;             // five-pt stencil for five-pt laplacian
+	DMDAStencilType  stype = DMDA_STENCIL_STAR;                  // five-pt stencil for five-pt laplacian
 
 	PetscInitialize(&argc, &args, (char*)0, 0);
 	ierr = PetscOptionsGetInt(NULL, "-n", &n, NULL); CHKERRQ(ierr); 
@@ -70,6 +70,7 @@ int main(int argc, char **args)
 	}
 
 	// Create DM Matrix of type mpiaij (default)
+	// Begin creating a dummy data-set
 	ierr = DMCreateMatrix(da, &A); CHKERRQ(ierr);
 
 	// Set matrix values
